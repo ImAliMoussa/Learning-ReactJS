@@ -14,7 +14,7 @@ class DishDetail extends React.Component {
                     {c.comment}
                     <br />
                     <br />
-                    -- {c.author} {c.date}
+                    -- {c.author} {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(c.date)))}
                     <br />
                     <br />
                 </li>);
@@ -54,7 +54,11 @@ class DishDetail extends React.Component {
     }
 
     render() {
-        return this.renderDish(this.props.dish);
+        return (
+            <div className="container">
+                {this.renderDish(this.props.dish)}
+            </div>
+        );
     }
 }
 
