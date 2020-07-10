@@ -21,13 +21,7 @@ class Main extends Component {
             comments: COMMENTS,
             promotions: PROMOTIONS,
             leaders: LEADERS,
-            selectedDish: null
         };
-    }
-
-    onDishSelect(dishId) {
-        alert(dishId);
-        this.setState({ selectedDish: dishId });
     }
 
     render() {
@@ -36,6 +30,16 @@ class Main extends Component {
                 <Home dish={this.state.dishes.filter((dish) => dish.featured)[0]}
                     promotion={this.state.promotions.filter((promo) => promo.featured)[0]}
                     leader={this.state.leaders.filter((leader) => leader.featured)[0]}
+                />
+            );
+        };
+        
+
+        const DishWithId = ({match}) => {
+            return (
+                <DishDetail 
+                dish={this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId, 10))[0]}
+                comments={this.state.comments.filter((comment) => comment.id === parseInt(match.params.dishId, 10))}
                 />
             );
         };
@@ -49,9 +53,9 @@ class Main extends Component {
                     <Route exact path='/menu'>
                         <React.Fragment>
                             <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
-                            <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
                         </React.Fragment>
                     </Route>
+                    <Route path='/menu/:dishId' component={DishWithId} />
                     <Redirect to='/home' />
                 </Switch>
 
