@@ -32,8 +32,6 @@ function RenderDish({dish}) {
     if (dish == null) {
         return <div></div>;
     } else {
-        // const comments = RenderComments(dish);
-        console.log(dish);
         return (
             <div className="container">
                 <div className="row">
@@ -44,9 +42,6 @@ function RenderDish({dish}) {
                             <p className="col-12" > {dish.description} </p>
                         </Card>
                     </div>
-                    {/* <div className="col-12 col-md-5 m-1">
-                        {comments}
-                    </div> */}
                 </div>
             </div>
         );
