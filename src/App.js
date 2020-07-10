@@ -6,7 +6,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 class App extends React.Component {
     render() {
-        let x = 5;
         return (
             <BrowserRouter>
                 <div className="App">

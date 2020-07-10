@@ -2,11 +2,12 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-function RenderComments(dish) {
-    if (dish === null || dish.comments === null) {
+function RenderComments({comments}) {
+    console.log(comments);
+    if (comments === null) {
         return <div></div>;
     } else {
-        const comments = dish.comments.map((c) => {
+        const C = comments.map((c) => {
             return (<li className="list-unstyled">
                 {c.comment}
                 <br />
@@ -20,32 +21,32 @@ function RenderComments(dish) {
             <div>
                 <h4>Comments</h4>
                 <ul className="list-group">
-                    {comments}
+                    {C}
                 </ul>
             </div>
         );
     }
 }
 
-function RenderDish(dish) {
+function RenderDish({dish}) {
     if (dish == null) {
         return <div></div>;
     } else {
-        const comments = RenderComments(dish);
-
+        // const comments = RenderComments(dish);
+        console.log(dish);
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-12 col-md-5 m-1">
+                    <div className="col-12 m-1">
                         <Card>
                             <CardImg width="100%" src={dish.image} alt={dish.name} />
                             <CardTitle className="col-12 my-1" >{dish.name}</CardTitle>
                             <p className="col-12" > {dish.description} </p>
                         </Card>
                     </div>
-                    <div className="col-12 col-md-5 m-1">
+                    {/* <div className="col-12 col-md-5 m-1">
                         {comments}
-                    </div>
+                    </div> */}
                 </div>
             </div>
         );
@@ -57,6 +58,7 @@ function DishDetail(props) {
         <div className="container">
             <div className="row">
                 <Breadcrumb>
+
                     <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
                     <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
                 </Breadcrumb>
