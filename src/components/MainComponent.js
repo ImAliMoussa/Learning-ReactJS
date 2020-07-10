@@ -4,6 +4,7 @@ import Footer from './FooterComponent';
 import Menu from './MenuComponent';
 import Home from './HomeComponent';
 import Contact from './ContactComponent';
+import About from './AboutComponent';
 import DishDetail from './DishdetailComponent';
 import { DISHES } from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
@@ -42,12 +43,19 @@ class Main extends Component {
             );
         };
 
+        const AboutUs = () => {
+            return (
+                <About leaders={LEADERS} />
+            );
+        };
+
         return (
             <React.Fragment>
                 <Header />
                 <Switch>
                     <Route path='/home' component={HomePage} />
                     <Route path='/contactus' component={Contact} />
+                    <Route path='/aboutus' component={AboutUs} />
                     <Route exact path='/menu'>
                         <React.Fragment>
                             <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
